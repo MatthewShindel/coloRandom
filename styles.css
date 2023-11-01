@@ -65,7 +65,7 @@ p {
 .lock {
 	margin-right: 1em;
 	margin-bottom: 1em;
-	display: none;
+	
 }
 
 label {
@@ -76,9 +76,8 @@ label img {
 	width: 50px;
 }
 
-.lock:checked + label img {
-	content: url(./assets/locked.png);
-}
+
+
 /*  */
 
 /*Specifc ID*/

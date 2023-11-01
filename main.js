@@ -1,15 +1,8 @@
 // Variables
-var box1 = document.querySelector('#box1');
-var box2 = document.querySelector('#box2');
-var box3 = document.querySelector('#box3');
-var box4 = document.querySelector('#box4');
-var box5 = document.querySelector('#box5');
-var hex1 = document.querySelector('#hex1');
-var hex2 = document.querySelector('#hex2');
-var hex3 = document.querySelector('#hex3');
-var hex4 = document.querySelector('#hex4');
-var hex5 = document.querySelector('#hex5');
 var newPalette = document.querySelector('#newPalette');
+var allLocks = document.querySelectorAll('.lock');
+var allBoxes = document.querySelectorAll('.box');
+var allHexes = document.querySelectorAll('.hex');
 var currentPalette = [];
 
 // Event Listeners
@@ -23,41 +16,73 @@ newPalette.addEventListener('click', function () {
 	updatePalette(currentPalette)
 });
 
+for (var index = 0; index < 5; index++) {
+	allLocks[index].addEventListener('click', changeLock())
+}
+
+
 // Functions
 function generateRandomColor() {
 	var characters = "0123456789ABCDEF";
-	var lead = "#";
+	var hex = "#";
 	for (var i = 0; i < 6; i++) {
-		lead += characters[Math.floor(Math.random() * 16)];
+		hex += characters[Math.floor(Math.random() * 16)];
 	}
-	return lead;
+	return hex;
 }
 
 function generateRandomPalette() {
-	// if color checked, don't remove element, replace unchcked with null
-	currentPalette = [];
-	for (var i = 0; i < 5; i++) {
-		//if array[i] === null, then replace with random color
-		//splice(i,1);
-		currentPalette.push(generateRandomColor());
+	for (var i = 0; i < 5; i++){
+		if(!allLocks[i].checked){
+			currentPalette[i] = generateRandomColor();
+		}
 	}
-	return currentPalette;
 }
 
 function updatePalette(array) {
 	for (var i = 0; i < array.length; i++) {
-		var boxNum = "box" + (i + 1);
-		var hexNum = "hex" + (i + 1);
-		var box = document.getElementById(boxNum);
-		var hex = document.getElementById(hexNum);
-		box.style.backgroundColor = array[i];
-		hex.innerText = array[i];
+		allBoxes[i].style.backgroundColor = array[i];
+		allHexes[i].innerText = array[i];
 	}
 }
 
-// target the  element by ID
-// get the image src 
-// add event listener to the checkbox
-// check if checked
-// if --- replace img
-// else  
+function changeLock() {
+	console.log("hello, i am changeLock");
+	for (var i = 0; i < allLocks.length; i++) {
+		// allLocks[index].addEventListener('click', changeLock)
+		if (allLocks[i].checked) {
+			
+			allLocks[i].alt = "Locked"
+			allLocks[i].src = "assets/locked.png"
+			// allLocks[i].innerHTML('<img src="assets/locked.png" alt="Locked Color">')
+		} else if (!allLocks[i].checked) {
+			allLocks[i].alt = "Unlocked"
+			allLocks[i].src = "assets/unlocked.png"
+			// allLocks[i].innerHTML('<img src="assets/unlocked.png" alt="Unlocked Color">')
+		}
+	}
+}
+// image.alt =  "new alt text"
+// image.src = new source
+//use queryselectorAll from all images?
+/*
+
+Dana's pseudo
+- we already have a queryselect all for locks
+- make an event listener that on click calls a function
+- this new function changes innerText <img src="assets/unlocked.png" alt="Unlocked Color">
+
+
+// var lockboxes = queryselectall...(.lock)
+
+// FOR LOOP- loop through the locks
+// locks[i].eventlistener!!! ('change', function())
+
+query select label??? 
+
+if (checked?)
+label.innerHTML = <img src ... alt...
+else 
+other img and other alt
+
+*/ 
