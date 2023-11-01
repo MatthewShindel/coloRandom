@@ -40,12 +40,14 @@ p {
 .box {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-end;
+	justify-content: flex-end;
 	margin: 7px;
 	width: 146px;
 	height: 146px;
 	border: 4px solid black;
 }
+
 .main-buttons {
     color: white;
     background-color: black;
@@ -57,7 +59,27 @@ p {
     font-size: 31px;
     border-radius: 0px 3em 0px 3em;
     margin-top: 2em;
+		cursor: pointer;
 }
+
+.lock {
+	margin-right: 1em;
+	margin-bottom: 1em;
+	display: none;
+}
+
+label {
+	cursor: pointer;
+}
+
+label img {
+	width: 50px;
+}
+
+.lock:checked + label img {
+	content: url(./assets/locked.png);
+}
+/*  */
 
 /*Specifc ID*/
 #box1 {

@@ -34,8 +34,11 @@ function generateRandomColor() {
 }
 
 function generateRandomPalette() {
+	// if color checked, don't remove element, replace unchcked with null
 	currentPalette = [];
 	for (var i = 0; i < 5; i++) {
+		//if array[i] === null, then replace with random color
+		//splice(i,1);
 		currentPalette.push(generateRandomColor());
 	}
 	return currentPalette;
@@ -51,3 +54,10 @@ function updatePalette(array) {
 		hex.innerText = array[i];
 	}
 }
+
+// target the  element by ID
+// get the image src 
+// add event listener to the checkbox
+// check if checked
+// if --- replace img
+// else  
