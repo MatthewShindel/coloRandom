@@ -44,24 +44,34 @@ function generateRandomPalette() {
 
 
 function updatePalette(array) {
+
+    // create variable to store string of currentboxnumber
+    // target the element by ID to look for an ID that matches that string
     for (var i = 0; i < array.length; i++) {
-        var boxNum = "box"
-        boxNum += (i + 1); 
-        if (boxNum === 'box1') {
-            box1.style.backgroundColor = array[i];
-            color1.innerText = array[i];
-        } else if (boxNum === 'box2') {
-            box2.style.backgroundColor = array[i];
-            color2.innerText = array[i];
-        } else if (boxNum === 'box3') {
-            box3.style.backgroundColor = array[i];
-            color3.innerText = array[i];
-        } else if (boxNum === 'box4') {
-            box4.style.backgroundColor = array[i];
-            color4.innerText = array[i];
-        } else if (boxNum === 'box5') {
-            box5.style.backgroundColor = array[i];
-            color5.innerText = array[i];
-        }  
+        var boxNum = "box" + (i + 1);
+        var colorNum = "color" + (i + 1);
+        var box = document.getElementById(boxNum);
+        var color = document.getElementById(colorNum);
+        box.style.backgroundColor = array[i];
+        color.innerText = array[i];
+
+        // boxNum += (i + 1); 
+        
+        // if (boxNum === 'box1') {
+        //     box1.style.backgroundColor = array[i];
+        //     color1.innerText = array[i];
+        // } else if (boxNum === 'box2') {
+        //     box2.style.backgroundColor = array[i];
+        //     color2.innerText = array[i];
+        // } else if (boxNum === 'box3') {
+        //     box3.style.backgroundColor = array[i];
+        //     color3.innerText = array[i];
+        // } else if (boxNum === 'box4') {
+        //     box4.style.backgroundColor = array[i];
+        //     color4.innerText = array[i];
+        // } else if (boxNum === 'box5') {
+        //     box5.style.backgroundColor = array[i];
+        //     color5.innerText = array[i];
+        // }  
     }
 }
