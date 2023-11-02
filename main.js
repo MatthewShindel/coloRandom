@@ -1,5 +1,5 @@
 // Variables
-var newPalette = document.querySelector('#newPalette');
+var newPaletteBtn = document.querySelector('#newPaletteBtn');
 var allLocks = document.querySelectorAll('.lock');
 var allBoxes = document.querySelectorAll('.box');
 var allHexes = document.querySelectorAll('.hex');
@@ -11,15 +11,10 @@ window.addEventListener('load', function () {
 	updatePalette(currentPalette)
 });
 
-newPalette.addEventListener('click', function () {
+newPaletteBtn.addEventListener('click', function () {
 	generateRandomPalette();
 	updatePalette(currentPalette)
 });
-
-for (var index = 0; index < 5; index++) {
-	allLocks[index].addEventListener('click', changeLock())
-}
-
 
 // Functions
 function generateRandomColor() {
@@ -45,44 +40,3 @@ function updatePalette(array) {
 		allHexes[i].innerText = array[i];
 	}
 }
-
-function changeLock() {
-	console.log("hello, i am changeLock");
-	for (var i = 0; i < allLocks.length; i++) {
-		// allLocks[index].addEventListener('click', changeLock)
-		if (allLocks[i].checked) {
-			
-			allLocks[i].alt = "Locked"
-			allLocks[i].src = "assets/locked.png"
-			// allLocks[i].innerHTML('<img src="assets/locked.png" alt="Locked Color">')
-		} else if (!allLocks[i].checked) {
-			allLocks[i].alt = "Unlocked"
-			allLocks[i].src = "assets/unlocked.png"
-			// allLocks[i].innerHTML('<img src="assets/unlocked.png" alt="Unlocked Color">')
-		}
-	}
-}
-// image.alt =  "new alt text"
-// image.src = new source
-//use queryselectorAll from all images?
-/*
-
-Dana's pseudo
-- we already have a queryselect all for locks
-- make an event listener that on click calls a function
-- this new function changes innerText <img src="assets/unlocked.png" alt="Unlocked Color">
-
-
-// var lockboxes = queryselectall...(.lock)
-
-// FOR LOOP- loop through the locks
-// locks[i].eventlistener!!! ('change', function())
-
-query select label??? 
-
-if (checked?)
-label.innerHTML = <img src ... alt...
-else 
-other img and other alt
-
-*/ 

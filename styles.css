@@ -17,10 +17,10 @@ header {
 }
 
 p {
-    font-weight: 400;
-    font-size: 22px;
-    margin-top: 5px;
-    background-color: none;
+	font-weight: 400;
+	font-size: 22px;
+	margin-top: 5px;
+	background-color: none;
 }
 
 /*Classes*/
@@ -49,23 +49,23 @@ p {
 }
 
 .main-buttons {
-    color: white;
-    background-color: black;
-    border: black;
-    width: 280px;
-    height: 60px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 31px;
-    border-radius: 0px 3em 0px 3em;
-    margin-top: 2em;
-		cursor: pointer;
+	color: white;
+	background-color: black;
+	border: black;
+	width: 280px;
+	height: 60px;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300;
+	font-size: 31px;
+	border-radius: 0px 3em 0px 3em;
+	margin-top: 2em;
+	cursor: pointer;
 }
 
 .lock {
 	margin-right: 1em;
 	margin-bottom: 1em;
-	
+	display: none;
 }
 
 label {
@@ -76,9 +76,9 @@ label img {
 	width: 50px;
 }
 
-
-
-/*  */
+.lock:checked + label img {
+	content: url(assets/locked.png);
+}
 
 /*Specifc ID*/
 #box1 {
