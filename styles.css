@@ -1,11 +1,16 @@
 /*Main Formatting*/
 body {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-evenly;
 	font-family: 'Poppins', sans-serif;
 	background-color: #E7F1F1;
+	height: 100vh;
+	margin: 0;
+}
+
+main {
+	display:flex;
+	flex-direction:column
 }
 
 header {
@@ -23,7 +28,25 @@ p {
 	background-color: none;
 }
 
+
 /*Classes*/
+.left-display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex;
+	width: 70%;
+}
+
+.right-display {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	border-left: solid 8px black;
+}
+
 .palette {
 	display: flex;
 	justify-content: space-around;
@@ -46,6 +69,13 @@ p {
 	width: 146px;
 	height: 146px;
 	border: 4px solid black;
+}
+
+.buttons{
+	width: 70%;
+	display: flex;
+	align-items: space-around;
+	justify-content: space-evenly;
 }
 
 .main-buttons {
