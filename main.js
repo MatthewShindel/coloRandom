@@ -27,7 +27,8 @@ savePaletteBtn.addEventListener('click', function() {
 });
 
 miniPaletteContainer.addEventListener('click', function(){
-	deleteSavedPalette(event);
+	deleteSavedPalette();
+	console.log(savedPalettes);
 });
 
 // Functions
@@ -68,7 +69,7 @@ function savePalette() {
 
 function displaySavedPalettes() {
 	miniPaletteContainer.innerHTML += `
-	<section class="mini-palette">
+	<section class="mini-palette" >
 		<div class="mini-box" style="background-color:${currentPalette[0]};">
 		</div>
 		<div class="mini-box" style="background-color:${currentPalette[1]};">
@@ -79,46 +80,21 @@ function displaySavedPalettes() {
 		</div>
 		<div class="mini-box" style="background-color:${currentPalette[4]};">
 		</div>
-		<button class="delete-button" id="${Date.now()}">
-			<img src="assets/delete.png" alt="Delete Button">
-		</button>
+		<input type="image" src="assets/delete.png" class="delete-button" id="${Date.now()}"/>
 	</section>
 	`
 }
 
-function deleteSavedPalette(event) {
+function deleteSavedPalette() {
 	for (var i = 0; i< savedPalettes.length; i++) {
-		// var currentMiniPalette = event.currentTarget.id;
 		console.log('in for loop')
-		console.log("savedpalettes id:" , savedPalettes[i].id);
-		console.log("current Target id:" , event.target.id);
-		if (savedPalettes[i].id === event.target.id){
+		console.log("savedpalettes id:", savedPalettes[i].id , typeof(savedPalettes[i].id));
+		console.log("current Target id:", event.target.id, typeof(event.target.id));
+		if (savedPalettes[i].id === Number(event.target.id)){
 			console.log('got a match');
+			savedPalettes.splice(i,1);
+			event.target.parentElement.remove();
+			return savedPalettes;
 		}
 	}
-	// savedPalettes.splice(i, 1);
-	// console.log(savedPalettes);
-
-	/*
-	look through savedPalettes array:
-		for loop, checking each object
-		if savedPalettes[i].id === event.target.id{
-			remove it
-		}
-	*/
-	// if (event.target.closest('.delete-button').remove()) {
-	// 	console.log('delete');
-	// 	deleteSavedPalette();
-  // }
-// 	if(event.target.className === 'delete-button'){
-		
-// 	}
-}
-
-
-function deleteX(event) {
-	if (event.target.closest('.delete-button')) {
-		console.log('delete');
-		deleteSavedPalette();
-  }
 }
