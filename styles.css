@@ -1,11 +1,16 @@
 /*Main Formatting*/
 body {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-evenly;
 	font-family: 'Poppins', sans-serif;
 	background-color: #E7F1F1;
+	height: 100vh;
+	margin: 0;
+}
+
+main {
+	display:flex;
+	flex-direction:column
 }
 
 header {
@@ -24,6 +29,23 @@ p {
 }
 
 /*Classes*/
+.left-display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex;
+	width: 70%;
+}
+
+.right-display {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	border-left: solid 8px black;
+}
+
 .palette {
 	display: flex;
 	justify-content: space-around;
@@ -37,6 +59,20 @@ p {
 	align-items: center;
 }
 
+.mini-palette{
+	display: flex;
+}
+
+.mini-box{
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	margin: 7px;
+	width: 46px;
+	height: 46px;
+	border: 2px solid black;
+}
+
 .box {
 	display: flex;
 	flex-direction: column;
@@ -46,6 +82,13 @@ p {
 	width: 146px;
 	height: 146px;
 	border: 4px solid black;
+}
+
+.buttons{
+	width: 70%;
+	display: flex;
+	align-items: space-around;
+	justify-content: space-evenly;
 }
 
 .main-buttons {
@@ -78,25 +121,4 @@ label img {
 
 .lock:checked + label img {
 	content: url(assets/locked.png);
-}
-
-/*Specifc ID*/
-#box1 {
-	background-color: #EA9999;
-}
-
-#box2 {
-	background-color: #FACB9C;
-}
-
-#box3 {
-	background-color: #FFE59A;
-}
-
-#box4 {
-	background-color: #B6D7A8;
-}
-
-#box5 {
-	background-color: #A4C4CA;
 }

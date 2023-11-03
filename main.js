@@ -1,19 +1,27 @@
 // Variables
 var newPaletteBtn = document.querySelector('#newPaletteBtn');
+var savePaletteBtn = document.querySelector('#savePaletteBtn');
 var allLocks = document.querySelectorAll('.lock');
 var allBoxes = document.querySelectorAll('.box');
 var allHexes = document.querySelectorAll('.hex');
+var miniPaletteContainer = document.querySelector('.mini-palette-container');
 var currentPalette = [];
+var savedPalettes = [];
 
 // Event Listeners
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
 	generateRandomPalette();
 	updatePalette(currentPalette)
 });
 
-newPaletteBtn.addEventListener('click', function () {
+newPaletteBtn.addEventListener('click', function() {
 	generateRandomPalette();
 	updatePalette(currentPalette)
+});
+
+savePaletteBtn.addEventListener('click', function() {
+	savePalette();
+	displaySavedPalettes();
 });
 
 // Functions
@@ -39,4 +47,26 @@ function updatePalette(array) {
 		allBoxes[i].style.backgroundColor = array[i];
 		allHexes[i].innerText = array[i];
 	}
+}
+
+function savePalette() {
+	savedPalettes.push(currentPalette);
+	return savedPalettes;
+}
+
+function displaySavedPalettes() {
+	miniPaletteContainer.innerHTML += `
+	<section class="mini-palette">
+		<div class="mini-box" style="background-color:${currentPalette[0]};">
+		</div>
+		<div class="mini-box" style="background-color:${currentPalette[1]};">
+		</div>
+		<div class="mini-box" style="background-color:${currentPalette[2]};">
+		</div>
+		<div class="mini-box" style="background-color:${currentPalette[3]};">
+		</div>
+		<div class="mini-box" style="background-color:${currentPalette[4]};">
+		</div>
+	</section>
+	`
 }
