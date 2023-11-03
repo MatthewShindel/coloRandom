@@ -5,6 +5,7 @@ var allLocks = document.querySelectorAll('.lock');
 var allBoxes = document.querySelectorAll('.box');
 var allHexes = document.querySelectorAll('.hex');
 var miniPaletteContainer = document.querySelector('.mini-palette-container');
+var miniPalette = document.querySelector('.mini-palette');
 var currentPalette = [];
 var savedPalettes = [];
 
@@ -22,6 +23,11 @@ newPaletteBtn.addEventListener('click', function() {
 savePaletteBtn.addEventListener('click', function() {
 	savePalette();
 	displaySavedPalettes();
+	console.log(savedPalettes);
+});
+
+miniPaletteContainer.addEventListener('click', function(){
+	deleteSavedPalette(event);
 });
 
 // Functions
@@ -50,7 +56,13 @@ function updatePalette(array) {
 }
 
 function savePalette() {
-	savedPalettes.push(currentPalette);
+	var newSavedPalette = {};
+	for(var i = 0; i < 5; i++) {
+		var key = `hex${i}`;
+		newSavedPalette[key] = currentPalette[i];
+	}
+	newSavedPalette['id'] = Date.now();
+	savedPalettes.push(newSavedPalette);
 	return savedPalettes;
 }
 
@@ -67,6 +79,46 @@ function displaySavedPalettes() {
 		</div>
 		<div class="mini-box" style="background-color:${currentPalette[4]};">
 		</div>
+		<button class="delete-button" id="${Date.now()}">
+			<img src="assets/delete.png" alt="Delete Button">
+		</button>
 	</section>
 	`
+}
+
+function deleteSavedPalette(event) {
+	for (var i = 0; i< savedPalettes.length; i++) {
+		// var currentMiniPalette = event.currentTarget.id;
+		console.log('in for loop')
+		console.log("savedpalettes id:" , savedPalettes[i].id);
+		console.log("current Target id:" , event.target.id);
+		if (savedPalettes[i].id === event.target.id){
+			console.log('got a match');
+		}
+	}
+	// savedPalettes.splice(i, 1);
+	// console.log(savedPalettes);
+
+	/*
+	look through savedPalettes array:
+		for loop, checking each object
+		if savedPalettes[i].id === event.target.id{
+			remove it
+		}
+	*/
+	// if (event.target.closest('.delete-button').remove()) {
+	// 	console.log('delete');
+	// 	deleteSavedPalette();
+  // }
+// 	if(event.target.className === 'delete-button'){
+		
+// 	}
+}
+
+
+function deleteX(event) {
+	if (event.target.closest('.delete-button')) {
+		console.log('delete');
+		deleteSavedPalette();
+  }
 }

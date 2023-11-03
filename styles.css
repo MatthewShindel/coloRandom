@@ -28,6 +28,15 @@ p {
 	background-color: none;
 }
 
+button img {
+	width: 30px;
+}
+
+.delete-button {
+	cursor: pointer;
+	border: none;
+}
+
 /*Classes*/
 .left-display {
 	display: flex;
