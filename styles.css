@@ -60,6 +60,20 @@ p {
 	align-items: center;
 }
 
+.mini-palette{
+	display: flex;
+}
+
+.mini-box{
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	margin: 7px;
+	width: 46px;
+	height: 46px;
+	border: 2px solid black;
+}
+
 .box {
 	display: flex;
 	flex-direction: column;
@@ -105,7 +119,7 @@ label {
 label img {
 	width: 50px;
 }
-
+/* https://www.freecodecamp.org/news/css-selectors-cheat-sheet/ */
 .lock:checked + label img {
 	content: url(assets/locked.png);
 }
