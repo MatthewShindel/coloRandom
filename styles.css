@@ -28,6 +28,14 @@ p {
 	background-color: none;
 }
 
+button img {
+	width: 30px;
+}
+
+.delete-button {
+	cursor: pointer;
+	border: none;
+}
 
 /*Classes*/
 .left-display {
@@ -119,28 +127,7 @@ label {
 label img {
 	width: 50px;
 }
-/* https://www.freecodecamp.org/news/css-selectors-cheat-sheet/ */
+
 .lock:checked + label img {
 	content: url(assets/locked.png);
-}
-
-/*Specifc ID*/
-#box1 {
-	background-color: #EA9999;
-}
-
-#box2 {
-	background-color: #FACB9C;
-}
-
-#box3 {
-	background-color: #FFE59A;
-}
-
-#box4 {
-	background-color: #B6D7A8;
-}
-
-#box5 {
-	background-color: #A4C4CA;
 }

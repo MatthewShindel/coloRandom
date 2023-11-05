@@ -5,6 +5,7 @@ var allLocks = document.querySelectorAll('.lock');
 var allBoxes = document.querySelectorAll('.box');
 var allHexes = document.querySelectorAll('.hex');
 var miniPaletteContainer = document.querySelector('.mini-palette-container');
+var miniPalette = document.querySelector('.mini-palette');
 var currentPalette = [];
 var savedPalettes = [];
 
@@ -22,20 +23,17 @@ newPaletteBtn.addEventListener('click', function() {
 savePaletteBtn.addEventListener('click', function() {
 	savePalette();
 	displaySavedPalettes();
-	console.log(savedPalettes.length)
 	console.log(savedPalettes);
 });
 
-function toggleLock() {
-	// if the thing we clicked is checked
-	// inner html is img of locked
-	// else inner html is img of unlocked
+miniPaletteContainer.addEventListener('click', function(event) {
+	if (event.target.closest('.delete-button')) {
+			var index = event.target.closest('.delete-button').dataset.index;
+			deleteSavedPalette(index);
+			console.log(savedPalettes);
+	}
+});
 
-	// otherwise also an alternative
-	// var image = lock image document query selector
-	// image.setAttribute("alt","unlocked");
-	// image.setAttribute("src","img/whatever.jpg");
-}
 
 // Functions
 function generateRandomColor() {
@@ -56,7 +54,6 @@ function generateRandomPalette() {
 }
 
 function updatePalette(array) {
-	console.log('update palette func', array)
 	for (var i = 0; i < array.length; i++) {
 		allBoxes[i].style.backgroundColor = array[i];
 		allHexes[i].innerText = array[i];
@@ -64,49 +61,56 @@ function updatePalette(array) {
 }
 
 function savePalette() {
-	savedPalettes.push(currentPalette);
+	var paletteCopy = currentPalette.slice();
+	savedPalettes.push(paletteCopy);
 	return savedPalettes;
 }
 
+
 function displaySavedPalettes() {
-	// for (var i = 0; i < savedPalettes.length; i++) {
-		
+	miniPaletteContainer.innerHTML = '';
+	for (var i = 0; i < savedPalettes.length; i++) {
 	miniPaletteContainer.innerHTML += `
 	<section class="mini-palette">
-		<div class="mini-box" style="background-color:${currentPalette[0]};">
+		<div class="mini-box" style="background-color:${savedPalettes[i][0]};">
 		</div>
-		<div class="mini-box" style="background-color:${currentPalette[1]};">
+		<div class="mini-box" style="background-color:${savedPalettes[i][1]};">
 		</div>
-		<div class="mini-box" style="background-color:${currentPalette[2]};">
+		<div class="mini-box" style="background-color:${savedPalettes[i][2]};">
 		</div>
-		<div class="mini-box" style="background-color:${currentPalette[3]};">
+		<div class="mini-box" style="background-color:${savedPalettes[i][3]};">
 		</div>
-		<div class="mini-box" style="background-color:${currentPalette[4]};">
+		<div class="mini-box" style="background-color:${savedPalettes[i][4]};">
 		</div>
+		<button class="delete-button" data-index="${i}">
+			<img src="assets/delete.png" alt="Delete Button">
+		</button>
 	</section>
 	`
-	//button id date.now
-// }
+	}
 }
 
+function deleteSavedPalette(index) {
+			savedPalettes.splice(index, 1);
+			displaySavedPalettes();
+	}
 
 
-/*
+	// savedPalettes.splice(i, 1);
+	// console.log(savedPalettes);
 
-section (here so we can order each palette into a column)
-for savedPalettes.length {
-	.innerHTML background-color: ${savedPalettes[i][0]}
-}
+	/*
+	look through savedPalettes array:
+		for loop, checking each object
+		if savedPalettes[i].id === event.target.id{
+			remove it
+		}
+	*/
+	// if (event.target.closest('.delete-button').remove()) {
+	// 	console.log('delete');
+	// 	deleteSavedPalette();
+  // }
+// 	if(event.target.className === 'delete-button'){
+		
+// 	}
 
-
-need an array of array's
-
-- create new function savePalette
-- this should capture currently displayed palette
-- then save (push?) the current palette to the savedPalettes array
-	savedPalettes.push(currentPalette)
-- create new function called displaySavedPalettes
-- this should loop through each element in savedPalettes and
-display each on the aside
-
-*/
