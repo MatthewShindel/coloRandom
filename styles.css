@@ -1,4 +1,4 @@
-/*Main Formatting*/
+/*Elements*/
 body {
 	display: flex;
 	justify-content: space-evenly;
@@ -10,7 +10,7 @@ body {
 
 main {
 	display:flex;
-	flex-direction:column
+	flex-direction:column;
 }
 
 header {
@@ -28,13 +28,20 @@ p {
 	background-color: none;
 }
 
-button img {
-	width: 30px;
+h1{
+	font-size: 40px;
 }
 
-.delete-button {
+label {
 	cursor: pointer;
-	border: none;
+}
+
+label img {
+	width: 50px;
+}
+
+button img {
+	width: 30px;
 }
 
 /*Classes*/
@@ -68,12 +75,23 @@ button img {
 	align-items: center;
 }
 
-.mini-palette{
+.saved-palettes-container {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+.mini-palette-container {
 	display: flex;
 	cursor: pointer;
 }
 
-.mini-box{
+.mini-palette {
+	display: flex;
+	cursor: pointer;
+}
+
+.mini-box {
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-end;
@@ -81,6 +99,19 @@ button img {
 	width: 46px;
 	height: 46px;
 	border: 2px solid black;
+}
+
+.mini-palette-container:hover .mini-box {
+	transform: scale(1.1);
+}
+
+.delete-button {
+	cursor: pointer;
+	border: none;
+}
+
+.delete-button:hover {
+	transform: scale(1.2);
 }
 
 .box {
@@ -94,7 +125,7 @@ button img {
 	border: 4px solid black;
 }
 
-.buttons{
+.main-button-section {
 	width: 70%;
 	display: flex;
 	align-items: space-around;
@@ -120,15 +151,6 @@ button img {
 	margin-bottom: 1em;
 	display: none;
 }
-
-label {
-	cursor: pointer;
-}
-
-label img {
-	width: 50px;
-}
-
 
 .lock:checked + label img {
 	content: url(assets/locked.png);

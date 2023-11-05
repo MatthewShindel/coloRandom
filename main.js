@@ -4,44 +4,38 @@ var savePaletteBtn = document.querySelector('#savePaletteBtn');
 var allLocks = document.querySelectorAll('.lock');
 var allBoxes = document.querySelectorAll('.box');
 var allHexes = document.querySelectorAll('.hex');
+var savedPalettesContainer = document.querySelector('.saved-palettes-container');
 var miniPaletteContainer = document.querySelector('.mini-palette-container');
-var miniPalette = document.querySelector('.mini-palette');
 var currentPalette = [];
 var savedPalettes = [];
 
 // Event Listeners
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
 	generateRandomPalette();
-	updatePalette(currentPalette)
+	updatePalette(currentPalette);
 });
 
-newPaletteBtn.addEventListener('click', function () {
+newPaletteBtn.addEventListener('click', function() {
 	generateRandomPalette();
-	updatePalette(currentPalette)
+	updatePalette(currentPalette);
 });
 
-savePaletteBtn.addEventListener('click', function () {
+savePaletteBtn.addEventListener('click', function() {
 	savePalette();
 	displaySavedPalettes();
-	console.log(savedPalettes);
 });
 
-miniPaletteContainer.addEventListener('click', function (event) {
+savedPalettesContainer.addEventListener('click', function(event) {
 	if (event.target.parentNode.classList.contains('delete-button')) {
 		var index = event.target.parentNode.dataset.index;
 		deleteSavedPalette(index);
-		console.log(savedPalettes);
 	} else if (event.target.className === 'mini-palette' || 'mini-box') {
 		var index = event.target.dataset.index;
-		console.log(index);
-		console.log(savedPalettes);
 		var savedPalette = savedPalettes[index];
-		updatePalette(savedPalette);//display the saved colors
-		currentPalette = savedPalette.slice();// now put those values into the currentPalette 
+		updatePalette(savedPalette);
+		currentPalette = savedPalette.slice();
 	}
 });
-
-// class IDs data*
 
 // Functions
 function generateRandomColor() {
@@ -74,29 +68,30 @@ function savePalette() {
 	return savedPalettes;
 }
 
-
 function displaySavedPalettes() {
-	miniPaletteContainer.innerHTML = '';
+	savedPalettesContainer.innerHTML = '';
 	for (var i = 0; i < savedPalettes.length; i++) {
-		var miniPalette = document.createElement('section');
+		var miniPaletteContainer = document.createElement('section');
+		var miniPalette = document.createElement('div');
 		miniPalette.className = 'mini-palette';
-		miniPalette.dataset.index = i;
+		miniPaletteContainer.className = 'mini-palette-container';
+		miniPaletteContainer.dataset.index = i;
 		for (var j = 0; j < savedPalettes[i].length; j++) {
 			var miniBox = document.createElement('div');
 			miniBox.className = 'mini-box';
 			miniBox.dataset.index = i;
 			miniBox.style.backgroundColor = savedPalettes[i][j];
-			miniPalette.appendChild(miniBox);
+			miniPaletteContainer.appendChild(miniBox);
 		}
 		var deleteButton = document.createElement('button');
 		deleteButton.className = 'delete-button';
 		deleteButton.dataset.index = i;
 		deleteButton.innerHTML = `<img src="assets/delete.png" alt="Delete Button">`;
-		miniPalette.appendChild(deleteButton);
 		miniPaletteContainer.appendChild(miniPalette);
+		miniPalette.appendChild(deleteButton);
+		savedPalettesContainer.appendChild(miniPaletteContainer);
 	}
 }
-
 
 function deleteSavedPalette(index) {
 	savedPalettes.splice(index, 1);
