@@ -28,6 +28,15 @@ p {
 	background-color: none;
 }
 
+button img {
+	width: 30px;
+}
+
+.delete-button {
+	cursor: pointer;
+	border: none;
+}
+
 /*Classes*/
 .left-display {
 	display: flex;
@@ -61,6 +70,7 @@ p {
 
 .mini-palette{
 	display: flex;
+	cursor: pointer;
 }
 
 .mini-box{
@@ -118,6 +128,7 @@ label {
 label img {
 	width: 50px;
 }
+
 
 .lock:checked + label img {
 	content: url(assets/locked.png);
