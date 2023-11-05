@@ -129,6 +129,7 @@ label img {
 	width: 50px;
 }
 
+
 .lock:checked + label img {
 	content: url(assets/locked.png);
 }
