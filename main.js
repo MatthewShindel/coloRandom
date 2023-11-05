@@ -27,12 +27,14 @@ savePaletteBtn.addEventListener('click', function() {
 });
 
 miniPaletteContainer.addEventListener('click', function(event) {
-	if (event.target.closest('.delete-button')) {
-			var index = event.target.closest('.delete-button').dataset.index;
+	var target = event.target;
+	if (target.parentNode.classList.contains('delete-button')) {
+			var index = target.parentNode.dataset.index;
 			deleteSavedPalette(index);
 			console.log(savedPalettes);
 	}
 });
+
 
 
 // Functions
@@ -53,16 +55,16 @@ function generateRandomPalette() {
 	}
 }
 
-function updatePalette(array) {
-	for (var i = 0; i < array.length; i++) {
-		allBoxes[i].style.backgroundColor = array[i];
-		allHexes[i].innerText = array[i];
+function updatePalette(colorValues) {
+	for (var i = 0; i < colorValues.length; i++) {
+		allBoxes[i].style.backgroundColor = colorValues[i];
+		allHexes[i].innerText = colorValues[i];
 	}
 }
 
 function savePalette() {
-	var paletteCopy = currentPalette.slice();
-	savedPalettes.push(paletteCopy);
+	var savedPalette = currentPalette.slice();
+	savedPalettes.push(savedPalette);
 	return savedPalettes;
 }
 
@@ -70,47 +72,25 @@ function savePalette() {
 function displaySavedPalettes() {
 	miniPaletteContainer.innerHTML = '';
 	for (var i = 0; i < savedPalettes.length; i++) {
-	miniPaletteContainer.innerHTML += `
-	<section class="mini-palette">
-		<div class="mini-box" style="background-color:${savedPalettes[i][0]};">
-		</div>
-		<div class="mini-box" style="background-color:${savedPalettes[i][1]};">
-		</div>
-		<div class="mini-box" style="background-color:${savedPalettes[i][2]};">
-		</div>
-		<div class="mini-box" style="background-color:${savedPalettes[i][3]};">
-		</div>
-		<div class="mini-box" style="background-color:${savedPalettes[i][4]};">
-		</div>
-		<button class="delete-button" data-index="${i}">
-			<img src="assets/delete.png" alt="Delete Button">
-		</button>
-	</section>
-	`
+			var miniPalette = document.createElement('section');
+			miniPalette.className = 'mini-palette';
+			for (var j = 0; j < savedPalettes[i].length; j++) {
+					var miniBox = document.createElement('div');
+					miniBox.className = 'mini-box';
+					miniBox.style.backgroundColor = savedPalettes[i][j];
+					miniPalette.appendChild(miniBox);
+			}
+			var deleteButton = document.createElement('button');
+			deleteButton.className = 'delete-button';
+			deleteButton.dataset.index = i;
+			deleteButton.innerHTML = `<img src="assets/delete.png" alt="Delete Button">`;
+			miniPalette.appendChild(deleteButton);
+			miniPaletteContainer.appendChild(miniPalette);
 	}
 }
+
 
 function deleteSavedPalette(index) {
 			savedPalettes.splice(index, 1);
 			displaySavedPalettes();
 	}
-
-
-	// savedPalettes.splice(i, 1);
-	// console.log(savedPalettes);
-
-	/*
-	look through savedPalettes array:
-		for loop, checking each object
-		if savedPalettes[i].id === event.target.id{
-			remove it
-		}
-	*/
-	// if (event.target.closest('.delete-button').remove()) {
-	// 	console.log('delete');
-	// 	deleteSavedPalette();
-  // }
-// 	if(event.target.className === 'delete-button'){
-		
-// 	}
-
